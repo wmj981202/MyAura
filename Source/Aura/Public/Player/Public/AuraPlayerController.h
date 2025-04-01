@@ -8,6 +8,7 @@
 
 class UInputMappingContext;
 class UInputAction;
+class IEnemyInterface;
 
 /**
  * 
@@ -20,6 +21,8 @@ class AURA_API AAuraPlayerController : public APlayerController
 public:
 	AAuraPlayerController();
 	
+	virtual void Tick(float DeltaTime) override;
+
 protected:
 	virtual void BeginPlay() override;
 
@@ -37,4 +40,10 @@ private:
 	//const:参数为只读，禁止在函数内修改输入值，保证数据安全。
 	//& 表示引用传递，避免复制大型结构体，提升性能。
 	void Move(const struct FInputActionValue& InputActionValue);
+
+	IEnemyInterface* LastActor;
+	IEnemyInterface* thisActor;
+	
+	void CursorTrace();
 };
+

@@ -5,11 +5,62 @@
 
 #include "EnhancedInputSubsystems.h"
 #include "EnhancedInputComponent.h"
+#include "Interaction/EnemyInterface.h"
 
 AAuraPlayerController::AAuraPlayerController()
 {
 	bReplicates = true;
+	LastActor = nullptr;
+	thisActor = nullptr;
 }
+
+void AAuraPlayerController::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+
+	//每帧检测是否命中IEnemyInterface
+	CursorTrace();
+}
+
+//鼠标射线检测
+inline void AAuraPlayerController::CursorTrace()
+{
+	FHitResult CursorHit;
+	GetHitResultUnderCursor(ECC_Visibility, false, CursorHit);
+	if (!CursorHit.bBlockingHit) return;
+
+	LastActor = thisActor;
+	thisActor = Cast<IEnemyInterface>(CursorHit.GetActor());
+
+	/*
+	 * 分情况讨论鼠标选中actor
+	 *  A. lastActor和thisActor都是null 不做修改
+	 *  B. lastActor为null thisActor有值 highlight thisActor
+	 *  C. lastActor有值 thisActor为null UnHighlight lastActor
+	 *  D. lastActor有值 thisActor有值  UnHighlight lastActor & highlight thisActor
+	 */
+	if (LastActor == nullptr)
+	{
+		if (thisActor != nullptr)
+		{
+			thisActor->HighlightActor();
+		}
+	}
+	else
+	{
+		if (thisActor != nullptr)
+		{
+			LastActor->UnHighlightActor();
+			thisActor->HighlightActor();
+		}
+		else
+		{
+			LastActor->UnHighlightActor();
+		}
+	}
+	
+}
+
 
 void AAuraPlayerController::BeginPlay()
 {
