@@ -19,6 +19,9 @@ public:
 	AAuraEnemyCharacter();
 	virtual void HighlightActor() override;
 	virtual void UnHighlightActor() override;
+
+	virtual void BeginPlay() override;
+	
 protected:
 	UPROPERTY(EditAnywhere,Category="Combat")
 	TObjectPtr<USkeletalMeshComponent> Weapon;
