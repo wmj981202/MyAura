@@ -4,7 +4,14 @@
 
 #include "CoreMinimal.h"
 #include "AttributeSet.h"
+#include "AbilitySystemComponent.h"
 #include "AuraAttributeSet.generated.h"
+
+#define ATTRIBUTE_ACCESSORS(ClassName, PropertyName) \
+GAMEPLAYATTRIBUTE_PROPERTY_GETTER(ClassName, PropertyName) \
+GAMEPLAYATTRIBUTE_VALUE_GETTER(PropertyName) \
+GAMEPLAYATTRIBUTE_VALUE_SETTER(PropertyName) \
+GAMEPLAYATTRIBUTE_VALUE_INITTER(PropertyName)
 
 /**
  * 
@@ -25,15 +32,19 @@ public:
 	//属性同步后的回调：当一个被标记为复制的属性（Replicated）在客户端或服务器上更新时，自动调用指定的函数
 	UPROPERTY(BlueprintReadOnly,ReplicatedUsing = OnRep_Health,Category = "characterAttribute")
 	FGameplayAttributeData Health;
+	ATTRIBUTE_ACCESSORS(UAuraAttributeSet,Health);
 
 	UPROPERTY(BlueprintReadOnly,ReplicatedUsing = OnRep_MaxHealth,Category = "characterAttribute")
 	FGameplayAttributeData MaxHealth;
+	ATTRIBUTE_ACCESSORS(UAuraAttributeSet,MaxHealth);
 
 	UPROPERTY(BlueprintReadOnly,ReplicatedUsing = OnRep_Health,Category = "characterAttribute")
 	FGameplayAttributeData Mana;
+	ATTRIBUTE_ACCESSORS(UAuraAttributeSet,Mana);
 
 	UPROPERTY(BlueprintReadOnly,ReplicatedUsing = OnRep_MaxHealth,Category = "characterAttribute")
 	FGameplayAttributeData MaxMana;
+	ATTRIBUTE_ACCESSORS(UAuraAttributeSet,MaxMana);
 
 	//复制属性值更新后通知GAS
 	UFUNCTION()
