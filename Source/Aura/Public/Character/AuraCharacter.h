@@ -18,6 +18,8 @@ public:
 	AAuraCharacter();
 	virtual void PossessedBy(AController* NewController) override;
 	virtual void OnRep_PlayerState() override;
+	
+//受保护蓝图中访问不到
 protected:
 	UPROPERTY(EditAnywhere,Category="Combat")
 	TObjectPtr<USkeletalMeshComponent> Weapon;

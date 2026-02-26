@@ -11,7 +11,7 @@ AAuraEnemyCharacter::AAuraEnemyCharacter()
 {
 	PrimaryActorTick.bCanEverTick = false;
 	GetMesh()->SetCollisionResponseToChannel(ECC_Visibility,ECR_Block);
-
+	//05 Constructing the ASC and AS 中 Enemay从生成赋值asc和as
 	//构建自定义子类AuraAbilitySystemComponent
 	AbilitySystemComponent = CreateDefaultSubobject<UAuraAbilitySystemComponent>("AbilitySystemComponent");
 	//设置网络可复制
@@ -20,7 +20,6 @@ AAuraEnemyCharacter::AAuraEnemyCharacter()
 
 	//设置自定义子类AuraAttributeSet
 	AttributeSet = CreateDefaultSubobject<UAuraAttributeSet>("AttributeSet");
-	
 	
 	Weapon = CreateDefaultSubobject<USkeletalMeshComponent>("Weapon");
 	Weapon->SetupAttachment(GetMesh(),FName("WeaponHandSocket"));

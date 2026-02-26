@@ -48,6 +48,7 @@ void AAuraCharacter::InitAbilityActorInfo()
 	AAuraPlayerState* AuraPlayerState = GetPlayerState<AAuraPlayerState>();
 	check(AuraPlayerState);
 	AuraPlayerState->GetAbilitySystemComponent()->InitAbilityActorInfo(AuraPlayerState,this);
+	//05 Constructing the ASC and AS 中 player从playerState 中赋值asc和as
 	AbilitySystemComponent = AuraPlayerState->GetAbilitySystemComponent();
 	AttributeSet = AuraPlayerState->GetAttributeSet();
 }
