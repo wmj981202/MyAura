@@ -94,7 +94,6 @@ void AAuraPlayerController::SetupInputComponent()
 	Super::SetupInputComponent();
 	// 将InputComponent强制类型转换成增强输入  Tips:CastChecked 强转加断言
 	UEnhancedInputComponent* EnhancedInputComponent =CastChecked<UEnhancedInputComponent>(InputComponent);
-
 	//成员函数指针的精确类型信息
 	//FInputActionValue
 	//1.标量值（浮点数）：如扳机键压力值（0.0~1.0）。

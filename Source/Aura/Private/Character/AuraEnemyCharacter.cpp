@@ -29,6 +29,7 @@ AAuraEnemyCharacter::AAuraEnemyCharacter()
 void AAuraEnemyCharacter::BeginPlay()
 {
 	Super::BeginPlay();
+	//1.不存在被玩家控制 也不存在asc并非在thisclass上创建的时 在开始使用时即可调用init确定OwnerActor和AvatorActor
 	AbilitySystemComponent->InitAbilityActorInfo(this,this);
 }
 

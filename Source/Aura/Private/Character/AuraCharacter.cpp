@@ -29,14 +29,15 @@ AAuraCharacter::AAuraCharacter()
 	bUseControllerRotationRoll = false;
 	bUseControllerRotationYaw = false;
 }
-
+//1.作为服务器初始化
 void AAuraCharacter::PossessedBy(AController* NewController)
 {
 	Super::PossessedBy(NewController);
+	
 	InitAbilityActorInfo();
 	
 }
-
+//2.作为客户端初始化
 void AAuraCharacter::OnRep_PlayerState()
 {
 	Super::OnRep_PlayerState();
